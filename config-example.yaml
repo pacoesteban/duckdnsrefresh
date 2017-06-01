@@ -1,0 +1,4 @@
+token: mytoken
+domains:
+  - "domain1"
+  - "domain2"
