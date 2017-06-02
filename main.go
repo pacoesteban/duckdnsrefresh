@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/spf13/viper"
 )
@@ -20,11 +21,19 @@ import (
 var (
 	token   string
 	domains []string
+	Version string
+	Build   string
 )
 
 func main() {
 	var v = flag.Bool("v", false, "Enable verbose output")
+	var ver = flag.Bool("V", false, "Shows version and exists")
 	flag.Parse()
+
+	if *ver {
+		fmt.Printf("Version: %s. Build: %s\n", Version, Build)
+		os.Exit(0)
+	}
 	viper.SetConfigName("config")         // name of config file (without extension)
 	viper.AddConfigPath("/etc/duckdns/")  // path to look for the config file in
 	viper.AddConfigPath("$HOME/.duckdns") // call multiple times to add many search paths
